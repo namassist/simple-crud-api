@@ -4,11 +4,9 @@ const cors = require("cors");
 const app = express();
 const mysql = require("mysql");
 
-// parse application/json
 app.use(bodyParser.json());
 app.use(cors());
 
-//create database connection
 const conn = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -54,7 +52,6 @@ app.post("/api/mahasiswa", (req, res) => {
   });
 });
 
-//update product
 app.put("/api/mahasiswa/:id", (req, res) => {
   let sql =
     "UPDATE MAHASISWA SET nama='" +
@@ -79,7 +76,6 @@ app.put("/api/mahasiswa/:id", (req, res) => {
   });
 });
 
-//Delete product
 app.delete("/api/mahasiswa/:id", (req, res) => {
   let sql = "DELETE FROM mahasiswa WHERE id=" + req.params.id + "";
   let query = conn.query(sql, (err, results) => {
@@ -88,7 +84,6 @@ app.delete("/api/mahasiswa/:id", (req, res) => {
   });
 });
 
-//Server listening
 app.listen(8080, () => {
   console.log("server berjalan di port 8080...");
 });
